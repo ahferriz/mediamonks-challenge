@@ -41,6 +41,12 @@ jobs:
       - name: Generate key
         run: php artisan key:generate
 
+      - name: Clear config
+        run: php artisan config:clear
+
+      - name: Refresh config
+        run: php artisan config:cache
+
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
         
@@ -84,7 +90,7 @@ jobs:
         run: composer install --prefer-dist --no-interaction --ansi
 
       - name: Run PHPStan
-        run: vendor/bin/phpstan analyse src tests --level=max --no-progress
+        run: vendor/bin/phpstan analyse ../app --level=max --no-progress --error-format=github
 
 #  prettier:
 #    name: Prettier
