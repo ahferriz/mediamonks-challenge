@@ -11,5 +11,4 @@ class Article extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['title', 'author', 'subtitle', 'content'];
-
 }

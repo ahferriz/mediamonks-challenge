@@ -8,11 +8,15 @@ use Livewire\Component;
 class Articles extends Component
 {
     public $articulos = [];
+
     public $articulosBorrados = [];
+
     public Article $articulo;
+
     public $editModal = false;
+
     public $viewModal = false;
-    
+
     protected $user;
 
     protected $rules = [
@@ -117,7 +121,6 @@ class Articles extends Component
         }
     }
 
-
     public function closeViewModal()
     {
         $this->viewModal = false;
@@ -131,7 +134,8 @@ class Articles extends Component
     /**
      * Restaura artículo borrado
      */
-    private function showFlash(string $text, string $icon = 'success') {
+    private function showFlash(string $text, string $icon = 'success')
+    {
         $this->dispatchBrowserEvent('swal', [
             'title' => $text,
             'toast' => true,
@@ -139,8 +143,7 @@ class Articles extends Component
             'timerProgressBar' => true,
             'icon' => $icon,
             'showConfirmButton' => false,
-            'position' => 'top-end',            
+            'position' => 'top-end',
         ]);
     }
-
 }

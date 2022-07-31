@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Auth;
 use App\Http\Controllers\Controller;
+use Auth;
 
 /**
  * Class DashboardController.
@@ -24,5 +24,4 @@ class DashboardController extends Controller
         // Return view
         return view('dashboard')->with($dashboardData);
     }
-
 }

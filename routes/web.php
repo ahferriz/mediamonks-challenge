@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\Backend\DashboardController;
 use App\Models\Article;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\DashboardController;
 
 Route::get('/', function () {
     $article = Article::inRandomOrder()->first();
+
     return view('welcome')->with(['article' => $article]);
 });
 

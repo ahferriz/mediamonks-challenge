@@ -72,20 +72,27 @@ jobs:
     name: Static analysis
     runs-on: ubuntu-20.04
     steps:
+
+      - name: Setting PHP 8.1
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: phpstan
       - uses: actions/checkout@v3
-      - uses: shivammathur/setup-php@v2
-      - run: composer install --prefer-dist --no-interaction --ansi
+
+      - name: Install Dependencies
+        run: composer install --prefer-dist --no-interaction --ansi
 
       - name: Run PHPStan
         run: vendor/bin/phpstan analyse
 
-  prettier:
-    name: Prettier
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-      - run: yarn install
-
-      - name: Run Prettier
-        run: npx prettier --check .
+#  prettier:
+#    name: Prettier
+#    runs-on: ubuntu-20.04
+#    steps:
+#      - uses: actions/checkout@v3
+#      - uses: actions/setup-node@v3
+#      - run: yarn install
+#
+#      - name: Run Prettier
+#        run: npx prettier --check .

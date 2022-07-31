@@ -10,7 +10,7 @@ use Tests\DuskTestCase;
 class RolesTest extends DuskTestCase
 {
     use DatabaseMigrations;
-    
+
     /**
      * Test welcome page.
      *
@@ -37,28 +37,24 @@ class RolesTest extends DuskTestCase
     public function testRolesDashboard()
     {
         $this->artisan('db:seed');
-        
+
         $this->browse(function (Browser $browser) {
             // Admin role tests
             $browser->loginAs(User::find(1))->visit('/dashboard')
                 ->assertSee('NEW')
                 ->assertSee('VIEW')
                 ->assertSee('EDIT')
-                ->assertSee('DELETE')
-            ;
+                ->assertSee('DELETE');
             $browser->loginAs(User::find(2))->visit('/dashboard')
                 ->assertDontSee('NEW')
                 ->assertSee('VIEW')
                 ->assertSee('EDIT')
-                ->assertDontSee('DELETE')
-            ;
+                ->assertDontSee('DELETE');
             $browser->loginAs(User::find(3))->visit('/dashboard')
                 ->assertDontSee('NEW')
                 ->assertSee('VIEW')
                 ->assertDontSee('EDIT')
-                ->assertDontSee('DELETE')
-            ;
+                ->assertDontSee('DELETE');
         });
     }
-
 }
