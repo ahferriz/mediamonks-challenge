@@ -19,7 +19,7 @@ The user interface was build using the CSS framework <b>Tailwind CSS</b> and liv
 
 Some tests where added to verify the roles and article rules. They are also an important part for the CI/CD as the code will only be deployed if all tests pass.
 
-## Version control 
+## CI
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Added CI tests with GitHub Actions to create an image and run all necessary tests.
 
