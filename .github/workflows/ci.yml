@@ -54,7 +54,7 @@ jobs:
         run: php artisan migrate:fresh --seed --force
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit
-        run: php artisan test --parallel
+        run: php artisan test
 
       - name: Install Latest Chrome
         run: |
@@ -90,7 +90,7 @@ jobs:
         run: composer install --prefer-dist --no-interaction --ansi
 
       - name: Run PHPStan
-        run: vendor/bin/phpstan analyse ../app --level=max --no-progress --error-format=github
+        run: vendor/bin/phpstan analyse app --level=max --no-progress --error-format=github
 
 #  prettier:
 #    name: Prettier
