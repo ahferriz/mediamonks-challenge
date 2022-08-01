@@ -63,11 +63,12 @@ class RolesTest extends DuskTestCase
      */
     public function testEditorRoleDashboard()
     {
-        session()->flush();
         $this->artisan('migrate:fresh --seed');
+        session()->flush();
 
         $this->browse(function (Browser $browser) {
             // Editor role tests
+            $browser->driver->manage()->deleteAllCookies();
             $browser
                 ->visit('/login')
                 ->type('email', 'editor@trapa.com')
@@ -95,6 +96,7 @@ class RolesTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) {
             // Usuario role tests
+            $browser->visit('/login')->script('location.reload();');
             $browser
                 ->visit('/login')
                 ->type('email', 'usuario@trapa.com')
