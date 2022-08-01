@@ -40,6 +40,7 @@ class RolesTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) {
             // Admin role tests
+            $browser->driver->manage()->deleteAllCookies();
             $browser
                 ->visit('/login?rand=' . rand(1, 100))
                 ->type('email', 'admin@trapa.com')
@@ -66,6 +67,7 @@ class RolesTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) {
             // Editor role tests
+            $browser->driver->manage()->deleteAllCookies();
             $browser
                 ->visit('/login?rand=' . rand(1, 100))
                 ->type('email', 'editor@trapa.com')

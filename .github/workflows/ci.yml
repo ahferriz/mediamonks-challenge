@@ -60,7 +60,7 @@ jobs:
         run: chmod -R 0755 vendor/laravel/dusk/bin/ 
 
       - name: Run Laravel Server
-        run: php artisan serve --no-reload > /dev/null 2>&1 &
+        run: php artisan serve > /dev/null 2>&1 &
 
       - name: Start Chrome Driver
         run: ./vendor/laravel/dusk/bin/chromedriver-linux > /dev/null 2>&1 &
@@ -74,13 +74,6 @@ jobs:
         with:
           name: screenshots
           path: tests/Browser/screenshots
-      - name: Upload Logs
-        if: failure()
-        uses: actions/upload-artifact@v2
-        with:
-          name: console
-          path: storage/logs
-
 
 #  static-analysis:
 #    name: Static analysis
