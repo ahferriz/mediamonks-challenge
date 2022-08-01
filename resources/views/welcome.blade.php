@@ -15,7 +15,7 @@
         </style>
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+        @livewireStyles
         <style>
             body {
                 font-family: 'Nunito', sans-serif;
@@ -92,5 +92,7 @@
                 </div>
             </div>
         </div>
+        @livewireScripts
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </body>
 </html>
