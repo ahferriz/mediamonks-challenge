@@ -41,7 +41,6 @@ class RolesTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             // Admin role tests
             $browser->loginAs(User::where('email', 'admin@trapa.com')->first())->visit('/dashboard')
-                ->
                 ->assertSee('NEW')
                 ->assertSee('VIEW')
                 ->assertSee('EDIT')
