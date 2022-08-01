@@ -64,7 +64,8 @@ jobs:
         run: ./vendor/laravel/dusk/bin/chromedriver-linux > /dev/null 2>&1 &
 
       - name: Run Laravel Server
-        run: php artisan serve > /dev/null 2>&1 &
+        run: ps
+        #run: php artisan serve > /dev/null 2>&1 &
 
       - name: Run Dusk Tests
         run: |
