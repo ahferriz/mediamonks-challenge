@@ -60,17 +60,17 @@ jobs:
       - name: Upgrade Chrome Driver
         run: php artisan dusk:chrome-driver
 
+      - name: Change permissions to dusk
+        run: chmod -R 0755 vendor/laravel/dusk/bin/ 
+
+      - name: Run Laravel Server
+        run: php artisan serve > /dev/null 2>&1 &
+
       - name: Start Chrome Driver
         run: ./vendor/laravel/dusk/bin/chromedriver-linux > /dev/null 2>&1 &
 
-      - name: Run Laravel Server
-        run: ps
-        #run: php artisan serve > /dev/null 2>&1 &
-
       - name: Run Dusk Tests
-        run: |
-          chmod -R 0755 vendor/laravel/dusk/bin/
-          php artisan dusk
+        run: php artisan dusk --colors --debug
 
 #  static-analysis:
 #    name: Static analysis
