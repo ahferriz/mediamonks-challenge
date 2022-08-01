@@ -36,6 +36,7 @@ class RolesTest extends DuskTestCase
      */
     public function testAdminRoleDashboard()
     {
+        $this->artisan('config:clear');
         $this->artisan('migrate:fresh --seed');
 
         $this->browse(function (Browser $browser) {
@@ -63,6 +64,7 @@ class RolesTest extends DuskTestCase
      */
     public function testEditorRoleDashboard()
     {
+        $this->artisan('config:clear');
         $this->artisan('migrate:fresh --seed');
 
         $this->browse(function (Browser $browser) {
@@ -90,6 +92,7 @@ class RolesTest extends DuskTestCase
      */
     public function testUsuarioRoleDashboard()
     {
+        $this->artisan('config:clear');
         $this->artisan('migrate:fresh --seed');
 
         $this->browse(function (Browser $browser) {
