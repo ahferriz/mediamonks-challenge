@@ -40,11 +40,8 @@ class RolesTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) {
             // Admin role tests
-            //$browser->driver->manage()->deleteAllCookies();
-            $browser->visit('/logout');            
-            //$browser->visit('/login')->script('location.reload();');
             $browser
-                ->visit('/login')
+                ->visit('/login?rand=' . rand(1, 100))
                 ->type('email', 'admin@trapa.com')
                 ->type('password', 'secret')
                 ->press('LOG IN')
@@ -69,10 +66,8 @@ class RolesTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) {
             // Editor role tests
-            $browser->driver->manage()->deleteAllCookies();
-            $browser->visit('/login')->script('location.reload();');
             $browser
-                ->visit('/login')
+                ->visit('/login?rand=' . rand(1, 100))
                 ->type('email', 'editor@trapa.com')
                 ->type('password', 'secret')
                 ->press('LOG IN')
@@ -98,9 +93,8 @@ class RolesTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             // Usuario role tests
             $browser->driver->manage()->deleteAllCookies();
-            //$browser->visit('/login')->script('location.reload();');
             $browser
-                ->visit('/login')
+                ->visit('/login?rand=' . rand(1, 100))
                 ->type('email', 'usuario@trapa.com')
                 ->type('password', 'secret')
                 ->press('LOG IN')
