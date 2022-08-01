@@ -53,12 +53,8 @@ jobs:
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: php artisan test --parallel
 
-      - name: Install Latest Chrome
-        run: |
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo dpkg -i google-chrome-stable_current_amd64.deb
       - name: Upgrade Chrome Driver
-        run: php artisan dusk:chrome-driver
+        run: php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
 
       - name: Change permissions to dusk
         run: chmod -R 0755 vendor/laravel/dusk/bin/ 
