@@ -21,5 +21,9 @@ Some tests where added to verify the roles and article rules. They are also an i
 
 ## CI
 
-Added CI tests with GitHub Actions to create an image and run all necessary tests.
+Added CI workflow with GitHub Actions to create an image and run all necessary tests after a push on the repository.
+
+## CD
+
+Added CD workflow with GitHub Actions to deploy the code to production on AWS when CI workflow completes successfully. In this specific case, the deployment is done directly with SSH as I have the free tier for EC2, but it can also be deployed to Elastic Beanstalk, ECR, ECS or many other ways.
 

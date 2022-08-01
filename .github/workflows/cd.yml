@@ -23,7 +23,7 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         script: |
           cd /var/www/mediamonks
-          php artisan down --message 'The app is being updated. Please try again.'
+          php artisan down
           git checkout -f
           git pull
           composer install --no-interaction --prefer-dist --optimize-autoloader
