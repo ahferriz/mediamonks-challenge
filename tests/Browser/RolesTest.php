@@ -18,7 +18,7 @@ class RolesTest extends DuskTestCase
      */
     public function testWelcome()
     {
-        $this->artisan('db:seed');
+        $this->artisan('migrate:fresh --seed');
 
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
@@ -36,7 +36,7 @@ class RolesTest extends DuskTestCase
      */
     public function testRolesDashboard()
     {
-        $this->artisan('db:seed');
+        $this->artisan('migrate:fresh --seed');
 
         $this->browse(function (Browser $browser) {
             // Admin role tests
