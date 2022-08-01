@@ -30,31 +30,84 @@ class RolesTest extends DuskTestCase
     }
 
     /**
-     * Test dashboard whith different roles.
+     * Test dashboard whith admin role.
      *
      * @return void
      */
-    public function testRolesDashboard()
+    public function testAdminRoleDashboard()
     {
+        session()->flush();
         $this->artisan('migrate:fresh --seed');
 
         $this->browse(function (Browser $browser) {
             // Admin role tests
-            $browser->loginAs(User::where('email', 'admin@trapa.com')->first())->visit('/dashboard')
+            $browser
+                ->visit('/login')
+                ->type('email', 'admin@trapa.com')
+                ->type('password', 'secret')
+                ->press('LOG IN')
+                ->assertDontSee('Whoops!')
+                ->assertPathIs('/dashboard')
                 ->assertSee('NEW')
                 ->assertSee('VIEW')
                 ->assertSee('EDIT')
-                ->assertSee('DELETE');
-            $browser->loginAs(User::where('email', 'editor@trapa.com')->first())->visit('/dashboard')
+                ->assertSee('DELETE')
+                ->logout();
+        });
+    }
+
+    /**
+     * Test dashboard whith editor role.
+     *
+     * @return void
+     */
+    public function testEditorRoleDashboard()
+    {
+        session()->flush();
+        $this->artisan('migrate:fresh --seed');
+
+        $this->browse(function (Browser $browser) {
+            // Editor role tests
+            $browser
+                ->visit('/login')
+                ->type('email', 'editor@trapa.com')
+                ->type('password', 'secret')
+                ->press('LOG IN')
+                ->assertDontSee('Whoops!')
+                ->assertPathIs('/dashboard')
                 ->assertDontSee('NEW')
                 ->assertSee('VIEW')
                 ->assertSee('EDIT')
-                ->assertDontSee('DELETE');
-            $browser->loginAs(User::where('email', 'usuario@trapa.com')->first())->visit('/dashboard')
+                ->assertDontSee('DELETE')
+                ->logout();
+        });
+    }
+    
+    /**
+     * Test dashboard whith usuario role.
+     *
+     * @return void
+     */
+    public function testUsuarioRoleDashboard()
+    {
+        session()->flush();
+        $this->artisan('migrate:fresh --seed');
+
+        $this->browse(function (Browser $browser) {
+            // Usuario role tests
+            $browser
+                ->visit('/login')
+                ->type('email', 'usuario@trapa.com')
+                ->type('password', 'secret')
+                ->press('LOG IN')
+                ->assertDontSee('Whoops!')
+                ->assertPathIs('/dashboard')
                 ->assertDontSee('NEW')
                 ->assertSee('VIEW')
                 ->assertDontSee('EDIT')
-                ->assertDontSee('DELETE');
+                ->assertDontSee('DELETE')
+                ->logout();
         });
     }
+
 }
