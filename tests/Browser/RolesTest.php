@@ -36,11 +36,13 @@ class RolesTest extends DuskTestCase
      */
     public function testAdminRoleDashboard()
     {
-        session()->flush();
         $this->artisan('migrate:fresh --seed');
 
         $this->browse(function (Browser $browser) {
             // Admin role tests
+            //$browser->driver->manage()->deleteAllCookies();
+            $browser->visit('/logout');            
+            //$browser->visit('/login')->script('location.reload();');
             $browser
                 ->visit('/login')
                 ->type('email', 'admin@trapa.com')
@@ -52,7 +54,7 @@ class RolesTest extends DuskTestCase
                 ->assertSee('VIEW')
                 ->assertSee('EDIT')
                 ->assertSee('DELETE')
-                ->logout();
+                ->visit('/logout');
         });
     }
 
@@ -64,11 +66,11 @@ class RolesTest extends DuskTestCase
     public function testEditorRoleDashboard()
     {
         $this->artisan('migrate:fresh --seed');
-        session()->flush();
 
         $this->browse(function (Browser $browser) {
             // Editor role tests
             $browser->driver->manage()->deleteAllCookies();
+            $browser->visit('/login')->script('location.reload();');
             $browser
                 ->visit('/login')
                 ->type('email', 'editor@trapa.com')
@@ -80,7 +82,7 @@ class RolesTest extends DuskTestCase
                 ->assertSee('VIEW')
                 ->assertSee('EDIT')
                 ->assertDontSee('DELETE')
-                ->logout();
+                ->visit('/logout');
         });
     }
     
@@ -91,12 +93,12 @@ class RolesTest extends DuskTestCase
      */
     public function testUsuarioRoleDashboard()
     {
-        session()->flush();
         $this->artisan('migrate:fresh --seed');
 
         $this->browse(function (Browser $browser) {
             // Usuario role tests
-            $browser->visit('/login')->script('location.reload();');
+            $browser->driver->manage()->deleteAllCookies();
+            //$browser->visit('/login')->script('location.reload();');
             $browser
                 ->visit('/login')
                 ->type('email', 'usuario@trapa.com')
@@ -108,7 +110,7 @@ class RolesTest extends DuskTestCase
                 ->assertSee('VIEW')
                 ->assertDontSee('EDIT')
                 ->assertDontSee('DELETE')
-                ->logout();
+                ->visit('/logout');
         });
     }
 
